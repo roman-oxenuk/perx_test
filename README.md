@@ -1,4 +1,4 @@
-Проект завёрну в docker, запускается через `docker-compose up`.  
+Проект завёрнут в docker, запускается через `docker-compose up`.  
 
 API сервиса:  
 `http://localhost:8000/api/key/new_keys_counter/` – Информация о количестве оставшихся, не выданных ключах.  

@@ -2,7 +2,6 @@ from django.urls import path, re_path
 
 from main import views
 
-
 urlpatterns = [
     path('issue/', views.KeyIssue.as_view(), name='key_issue'),
     re_path(r'^check/(?P<key_value>([A-Za-z0-9]){4})/$', views.KeyCheck.as_view(), name='key_check'),

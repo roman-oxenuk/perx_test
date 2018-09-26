@@ -1,8 +1,7 @@
 # coding: utf-8
 from django.db import transaction
-
-from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from main.models import Key, NewKeysCounter
 from main.serializers import KeySerializer, NewKeysCounterSerializer

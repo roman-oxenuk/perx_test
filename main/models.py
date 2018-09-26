@@ -26,12 +26,12 @@ class Key(models.Model):
         db_index=True
     )
 
-    def __str__(self):
-        return self.value
-
     class Meta:
         verbose_name = 'Ключ'
         verbose_name_plural = 'Ключи'
+
+    def __str__(self):
+        return self.value
 
 
 class NewKeysCounter(models.Model):
@@ -51,11 +51,12 @@ class NewKeysCounter(models.Model):
         default=0
     )
 
+    class Meta:
+        verbose_name = 'Счётчик новых не выданных ключей'
+
     def __str__(self):
         return '{0} has {1} new keys'.format(
             self.table_name,
             self.new_keys
         )
 
-    class Meta:
-        verbose_name = 'Счётчик новых не выданных ключей'
