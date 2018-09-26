@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+
+  db:
+    image: postgres
+    command: postgres -c max_wal_size=2GB -c min_wal_size=1GB -c maintenance_work_mem=256MB -c shared_buffers=1GB -c wal_buffers=16MB -c work_mem=20971kB
+    environment:
+      - 'POSTGRES_USER=postgres'
+    ports:
+      - '5432:5432'
+
+  web:
+    build: .
+    command: ./wait-for-it.sh -h db -p 5432 -t 5 -- bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    environment:
+      - 'DATABASE_HOST=db'
+      - 'DATABASE_NAME=postgres'
+    volumes:
+      - .:/app
+    ports:
+      - '8000:8000'
+    depends_on:
+      - db
+    links:
+      - db
